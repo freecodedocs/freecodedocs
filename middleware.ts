@@ -5,7 +5,7 @@ const BLOCKED_UA =
   /AhrefsBot|SemrushBot|MJ12bot|DotBot|PetalBot|Bytespider|SerpstatBot|MegaIndex|ShapBot|BLEXBot|DataForSeoBot|Barkrowler|GoogleOther|GPTBot|CCBot|ClaudeBot|anthropic-ai|Amazonbot|SeznamBot|ZoominfoBot/i;
 
 const DOCS_BLOCKED_UA =
-  /OAI-SearchBot|PerplexityBot|Bingbot|DuckDuckBot/i;
+  /OAI-SearchBot|PerplexityBot|DuckDuckBot/i;
 
 export function middleware(request: NextRequest) {
   const ua = request.headers.get("user-agent") ?? "";

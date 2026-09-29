@@ -45,10 +45,6 @@ export default function robots(): MetadataRoute.Robots {
         disallow: "/docs",
       },
       {
-        userAgent: "Bingbot",
-        disallow: "/docs",
-      },
-      {
         userAgent: "DuckDuckBot",
         disallow: "/docs",
       },
