@@ -44,17 +44,17 @@ export default async function DocPage({ params }: Props) {
       <article className="overflow-hidden">
         <nav aria-label="Breadcrumb" className="mb-6 text-sm text-muted">
           <ol className="flex flex-wrap items-center gap-x-2">
-            <li><Link href="/" className="hover:text-ink">Docs</Link></li>
+            <li><Link href="/" prefetch={false} className="hover:text-ink">Docs</Link></li>
             <li aria-hidden>/</li>
-            <li><Link href={`/docs/${tech}`} className="hover:text-ink">{tName}</Link>{ver && <span className="ml-2 rounded border border-line px-1.5 font-mono text-xs">{ver}</span>}</li>
+            <li><Link href={`/docs/${tech}`} prefetch={false} className="hover:text-ink">{tName}</Link>{ver && <span className="ml-2 rounded border border-line px-1.5 font-mono text-xs">{ver}</span>}</li>
             {entry && <><li aria-hidden>/</li><li>{entry.type}</li><li aria-hidden>/</li><li aria-current="page" className="text-ink">{entry.name}</li></>}
           </ol>
         </nav>
         <div className="doc" dangerouslySetInnerHTML={{ __html: renderDoc(html, tech, path) }} />
         <CopyCode />
         <nav aria-label="Pagination" className="mt-14 grid max-w-[46rem] grid-cols-2 gap-4 border-t border-line pt-6 text-sm">
-          {prev ? <Link href={docHref(tech, prev.path)} className="rounded-md border border-line p-3 hover:border-accent"><span className="block text-xs text-muted">Previous</span>{prev.name}</Link> : <span />}
-          {next ? <Link href={docHref(tech, next.path)} className="rounded-md border border-line p-3 text-right hover:border-accent"><span className="block text-xs text-muted">Next</span>{next.name}</Link> : <span />}
+          {prev ? <Link href={docHref(tech, prev.path)} prefetch={false} className="rounded-md border border-line p-3 hover:border-accent"><span className="block text-xs text-muted">Previous</span>{prev.name}</Link> : <span />}
+          {next ? <Link href={docHref(tech, next.path)} prefetch={false} className="rounded-md border border-line p-3 text-right hover:border-accent"><span className="block text-xs text-muted">Next</span>{next.name}</Link> : <span />}
         </nav>
       </article>
     );

@@ -5,8 +5,7 @@ import type { BlogPost } from "@/lib/blog";
 
 export default function BlogCard({ post }: { post: BlogPost }) {
   return (
-    <Link href={`/blog/${post.slug}`} className="group block overflow-hidden rounded-lg border border-line transition-colors hover:border-accent">
-      <BlogArt variant={post.cover} className="aspect-[20/11] w-full border-b border-line" />
+    <Link href={`/blog/${post.slug}`} prefetch={false} className="group block overflow-hidden rounded-lg border border-line transition-colors hover:border-accent">      <BlogArt variant={post.cover} className="aspect-[20/11] w-full border-b border-line" />
       <div className="p-5">
         <div className="flex flex-wrap gap-1.5">
           {post.tags.slice(0, 2).map((t) => (
