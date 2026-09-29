@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
 // Add any additional bad actors you identify in your logs.
-const BLOCKED_UA = /AhrefsBot|SemrushBot|MJ12bot|DotBot|PetalBot|Bytespider|SerpstatBot|MegaIndex/i;
+const BLOCKED_UA = /AhrefsBot|SemrushBot|MJ12bot|DotBot|PetalBot|Bytespider|SerpstatBot|MegaIndex|ShapBot/i;
 
 export function proxy(request: NextRequest) {
     const ua = request.headers.get("user-agent") ?? "";
