@@ -5,6 +5,8 @@ import TechList from "@/components/TechList";
 import { getTechs } from "@/lib/devdocs";
 import { groupTechs } from "@/lib/url";
 
+export const revalidate = 86400;
+
 export default async function Docs() {
   let groups;
   try { groups = groupTechs(await getTechs()); } catch (e) {

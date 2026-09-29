@@ -6,6 +6,8 @@ import SiteHeader from "@/components/SiteHeader";
 import { getTechs } from "@/lib/devdocs";
 import { groupTechs } from "@/lib/url";
 
+export const revalidate = 86400;
+
 export const metadata: Metadata = {
   title: { absolute: "FreeCodeDocs — free developer documentation" },
   description: "Documentation for hundreds of languages, frameworks and libraries in one fast, searchable, free reader.",

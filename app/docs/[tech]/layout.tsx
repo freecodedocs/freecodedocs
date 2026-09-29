@@ -5,6 +5,8 @@ import TechList from "@/components/TechList";
 import { getIndex, getTechs, pageList, type Tech, type TechIndex } from "@/lib/devdocs";
 import { baseSlug, groupTechs } from "@/lib/url";
 
+export const revalidate = 86400;
+
 export default async function DocsLayout({ children, params }: { children: React.ReactNode; params: Promise<{ tech: string }> }) {
   const { tech } = await params;
   let techs: Tech[] = [];

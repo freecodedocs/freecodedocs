@@ -5,6 +5,8 @@ import { allPosts } from "@/lib/blog";
 import { getTechs } from "@/lib/devdocs";
 import { groupTechs } from "@/lib/url";
 
+export const revalidate = 86400;
+
 export const metadata: Metadata = {
   title: "Blog",
   description: "Practical writing on reading documentation, developer workflow, and getting the most out of reference docs — from the team behind FreeCodeDocs.",

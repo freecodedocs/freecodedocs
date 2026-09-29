@@ -1,5 +1,7 @@
 import { NextResponse } from "next/server";
 
+export const revalidate = 86400;
+
 const BASE_URL = "https://freecodedocs.vercel.app";
 
 type DocEntry = {

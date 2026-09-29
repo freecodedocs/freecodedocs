@@ -1,11 +1,11 @@
 import { NextResponse } from "next/server";
+import { baseSlug } from "@/lib/url";
 
 const BASE_URL = "https://freecodedocs.vercel.app";
 
-type Technology = {
-  name: string;
-  slug: string;
-};
+export const revalidate = 86400;
+
+type Technology = { name: string; slug: string };
 
 export async function GET() {
   try {
@@ -14,41 +14,35 @@ export async function GET() {
     });
 
     if (!response.ok) {
-      return new NextResponse("Failed to fetch DevDocs technologies", {
-        status: 500,
-      });
+      return new NextResponse("Failed to fetch DevDocs technologies", { status: 500 });
     }
 
     const technologies: Technology[] = await response.json();
 
-    // Your manually managed sitemaps
-    const staticSitemaps = [
-      "pages.xml",
-      "blog.xml",
-    ];
+    // Keep exactly one slug per technology family — the default/unversioned
+    // one where it exists, otherwise the first version we see. This cuts
+    // out hundreds of redundant "old version" sub-sitemaps.
+    const seen = new Map<string, string>();
+    for (const t of technologies) {
+      const base = baseSlug(t.slug);
+      const isDefault = t.slug === base;
+      if (!seen.has(base) || isDefault) seen.set(base, t.slug);
+    }
+    const defaultSlugs = [...seen.values()];
 
-    // DevDocs technology sitemaps
-    const technologySitemaps = technologies.map(
-      (technology) => `${encodeURIComponent(technology.slug)}.xml`
-    );
-
-    // Combine both
-    const sitemapFiles = [
-      ...staticSitemaps,
-      ...technologySitemaps,
-    ];
+    const staticSitemaps = ["pages.xml", "blog.xml"];
+    const technologySitemaps = defaultSlugs.map((slug) => `${encodeURIComponent(slug)}.xml`);
+    const sitemapFiles = [...staticSitemaps, ...technologySitemaps];
 
     const sitemaps = sitemapFiles
-      .map(
-        (file) => `
+      .map((file) => `
   <sitemap>
     <loc>${BASE_URL}/sitemaps/${file}</loc>
-  </sitemap>`
-      )
+  </sitemap>`)
       .join("");
 
     const xml = `<?xml version="1.0" encoding="UTF-8"?>
-    <?xml-stylesheet type="text/xsl" href="/sitemap.xsl"?>
+<?xml-stylesheet type="text/xsl" href="/sitemap.xsl"?>
 <sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${sitemaps}
 </sitemapindex>`;
@@ -56,15 +50,11 @@ ${sitemaps}
     return new NextResponse(xml, {
       headers: {
         "Content-Type": "application/xml; charset=utf-8",
-        "Cache-Control":
-          "public, s-maxage=86400, stale-while-revalidate=604800",
+        "Cache-Control": "public, s-maxage=86400, stale-while-revalidate=604800",
       },
     });
   } catch (error) {
     console.error("Failed to generate sitemap index:", error);
-
-    return new NextResponse("Failed to generate sitemap", {
-      status: 500,
-    });
+    return new NextResponse("Failed to generate sitemap", { status: 500 });
   }
 }

@@ -7,6 +7,8 @@ import { DocsError, getIndex, getPageHtml, getTechs, pageList } from "@/lib/devd
 import { renderDoc } from "@/lib/render";
 import { docHref } from "@/lib/url";
 
+export const revalidate = 86400;
+
 type Props = { params: Promise<{ tech: string; path: string[] }> };
 const toPath = (segs: string[]) => segs.map(decodeURIComponent).join("/");
 

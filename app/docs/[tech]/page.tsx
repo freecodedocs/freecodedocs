@@ -3,6 +3,8 @@ import ErrorState from "@/components/ErrorState";
 import { getIndex, pageList } from "@/lib/devdocs";
 import { docHref } from "@/lib/url";
 
+export const revalidate = 86400;
+
 export default async function TechHome({ params }: { params: Promise<{ tech: string }> }) {
   const { tech } = await params;
   let first;
