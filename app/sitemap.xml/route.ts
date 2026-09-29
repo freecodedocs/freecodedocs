@@ -30,7 +30,7 @@ export async function GET() {
     }
     const defaultSlugs = [...seen.values()];
 
-    const staticSitemaps = ["pages.xml", "blog.xml"];
+    const staticSitemaps = ["pages.xml", "blog.xml", "cheatsheets.xml", "compare.xml"];
     const technologySitemaps = defaultSlugs.map((slug) => `${encodeURIComponent(slug)}.xml`);
     const sitemapFiles = [...staticSitemaps, ...technologySitemaps];
 

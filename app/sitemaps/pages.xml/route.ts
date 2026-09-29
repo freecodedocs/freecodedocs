@@ -23,6 +23,18 @@ const pages = [
     changefreq: "weekly",
     priority: "0.9",
   },
+  {
+    path: "/cheatsheets",
+    lastmod: "2026-09-29",
+    changefreq: "weekly",
+    priority: "0.8"
+  },
+  {
+    path: "/compare",
+    lastmod: "2026-09-29",
+    changefreq: "weekly",
+    priority: "0.8"
+  },
 ];
 
 function escapeXml(value: string) {
