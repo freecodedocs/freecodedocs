@@ -4,11 +4,55 @@ const BASE_URL = "https://freecodedocs.vercel.app";
 
 export default function robots(): MetadataRoute.Robots {
   return {
-    rules: {
-      userAgent: "*",
-      allow: "/",
-      disallow: "/docs/*~*",
-    },
+    rules: [
+      {
+        userAgent: "*",
+        allow: "/",
+        disallow: "/docs/*~*",
+      },
+
+      {
+        userAgent: "GoogleOther",
+        disallow: "/",
+      },
+      {
+        userAgent: "GPTBot",
+        disallow: "/",
+      },
+      {
+        userAgent: "CCBot",
+        disallow: "/",
+      },
+      {
+        userAgent: "ClaudeBot",
+        disallow: "/",
+      },
+      {
+        userAgent: "anthropic-ai",
+        disallow: "/",
+      },
+      {
+        userAgent: "Bytespider",
+        disallow: "/",
+      },
+
+      {
+        userAgent: "OAI-SearchBot",
+        disallow: "/docs",
+      },
+      {
+        userAgent: "PerplexityBot",
+        disallow: "/docs",
+      },
+      {
+        userAgent: "Bingbot",
+        disallow: "/docs",
+      },
+      {
+        userAgent: "DuckDuckBot",
+        disallow: "/docs",
+      },
+    ],
 
     sitemap: `${BASE_URL}/sitemap.xml`,
   };
