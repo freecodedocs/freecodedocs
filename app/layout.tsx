@@ -15,7 +15,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className={`${sans.variable} ${mono.variable}`}>
       <head>
-      <script type="text/javascript">(function(i,m,p,a,c,t){c.ire_o=p;c[p]=c[p]||function(){(c[p].a=c[p].a||[]).push(arguments)};t=a.createElement(m);var z=a.getElementsByTagName(m)[0];t.async=1;t.src=i;z.parentNode.insertBefore(t,z)})('https://utt.impactcdn.com/P-A7913317-53f4-4069-a810-768ff68dc7f71.js','script','impactStat',document,window);impactStat('transformLinks');impactStat('trackImpression');</script>
+    <script
+  type="text/javascript"
+  dangerouslySetInnerHTML={{
+    __html: `(function(i,m,p,a,c,t){c.ire_o=p;c[p]=c[p]||function(){(c[p].a=c[p].a||[]).push(arguments)};t=a.createElement(m);var z=a.getElementsByTagName(m)[0];t.async=1;t.src=i;z.parentNode.insertBefore(t,z)})('https://utt.impactcdn.com/P-A7913317-53f4-4069-a810-768ff68dc7f71.js','script','impactStat',document,window);impactStat('transformLinks');impactStat('trackImpression');`,
+  }}
+/>
       </head>
       <body className="font-sans">
         {children}
