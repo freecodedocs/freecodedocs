@@ -2,6 +2,9 @@ export {};
 
 declare global {
   interface Window {
-    impactStat?: (...args: string[]) => void;
+    impactStat?: {
+      (...args: string[]): void;
+      a?: string[][];
+    };
   }
 }
